@@ -1,23 +1,22 @@
 package com.example.projectjavawebservices.controller;
 
 
-import com.example.projectjavawebservices.dto.PostDto;
+import com.example.projectjavawebservices.dto.Post;
 import com.example.projectjavawebservices.entities.AppUser;
 import com.example.projectjavawebservices.services.PostService;
 import com.example.projectjavawebservices.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("api/users")
-public class UserController {
+public class AppController {
 
     private final UserService userService;
     private final PostService postService;
 
-    public UserController(UserService userService, PostService postService) {
+    public AppController(UserService userService, PostService postService) {
         this.userService = userService;
         this.postService = postService;
     }
@@ -48,7 +47,7 @@ public class UserController {
 
     //GET post from api
     @GetMapping("/{id}/posts")
-        public List<PostDto> findByUserId(@PathVariable int id){
+        public List<Post> findByUserId(@PathVariable int id){
             return postService.findByUserId(id);
         }
 
