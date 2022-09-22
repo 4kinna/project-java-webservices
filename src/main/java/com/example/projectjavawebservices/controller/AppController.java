@@ -5,6 +5,7 @@ import com.example.projectjavawebservices.dto.Post;
 import com.example.projectjavawebservices.entities.AppUser;
 import com.example.projectjavawebservices.services.PostService;
 import com.example.projectjavawebservices.services.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class AppController {
     }
 
     //Get Specific user by id
+    @PreAuthorize("hasPermission(#id, '')")
     @GetMapping("/{id}")
     public AppUser findById(@PathVariable int id){
         return userService.findById(id);

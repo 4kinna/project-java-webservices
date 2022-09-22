@@ -12,7 +12,15 @@ public class AppUser {
     @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(nullable = false)
+    private String password;
+
     public AppUser() {
+    }
+
+    public AppUser(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public int getId() {
@@ -31,11 +39,20 @@ public class AppUser {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
