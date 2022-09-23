@@ -5,6 +5,7 @@ import com.example.projectjavawebservices.dto.Post;
 import com.example.projectjavawebservices.entities.AppUser;
 import com.example.projectjavawebservices.services.PostService;
 import com.example.projectjavawebservices.services.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class AppController {
     }
 
     //Get Specific user by id
+    @PreAuthorize("hasPermission(#id, '')")
     @GetMapping("/{id}")
     public AppUser findById(@PathVariable int id){
         return userService.findById(id);
@@ -34,18 +36,21 @@ public class AppController {
     }
 
     //PUT update existing user
+    @PreAuthorize("hasPermission(#id, '')")
     @PutMapping("/{id}")
     public AppUser updateUser(@RequestBody AppUser user, @PathVariable int id){
         return userService.updateUser(user,id);
     }
 
     //DELETE user
+    @PreAuthorize("hasPermission(#id, '')")
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id){
         userService.deleteUser(id);
     }
 
     //GET post from api
+    @PreAuthorize("hasPermission(#id, '')")
     @GetMapping("/{id}/posts")
         public List<Post> findByUserId(@PathVariable int id){
             return postService.findByUserId(id);
