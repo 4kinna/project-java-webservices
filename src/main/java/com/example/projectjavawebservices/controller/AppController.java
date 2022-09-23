@@ -36,18 +36,21 @@ public class AppController {
     }
 
     //PUT update existing user
+    @PreAuthorize("hasPermission(#id, '')")
     @PutMapping("/{id}")
     public AppUser updateUser(@RequestBody AppUser user, @PathVariable int id){
         return userService.updateUser(user,id);
     }
 
     //DELETE user
+    @PreAuthorize("hasPermission(#id, '')")
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id){
         userService.deleteUser(id);
     }
 
     //GET post from api
+    @PreAuthorize("hasPermission(#id, '')")
     @GetMapping("/{id}/posts")
         public List<Post> findByUserId(@PathVariable int id){
             return postService.findByUserId(id);
